@@ -1,0 +1,70 @@
+<% include partials/header %>
+
+    <div class= 'container article-container'>
+
+        <a href="/"><button class="btn-secondary">Back</button></a>
+        <h1 class='hero__title'><%= article.title%></h1>
+        <p class='hero__text'>published by, <span class = 'publishedBy'><%= article.author%></span></p>
+        <div class ="art__text">
+            <span> TAGS :  </span>
+            <%article.tags.forEach(tag => {%>
+                <span class='hero__text'> [<%= tag %>] </span>
+            <%})%>
+        </div>
+        <div class ="art__text">
+            <p class='hero__text'><%= article.description%></p>
+            <p class='hero__text comment__text'> Likes: <%= article.likes.length %></p>
+        </div>
+
+
+        <% if(loggedUser && article.userId.toString() === loggedUser.id.toString()) {%>
+                <a href="/articles/edit/<%= article.id%>"><button class="btn-secondary">Edit</button></a>
+                <a href="/articles/delete/<%= article.id%>"><button class="btn-secondary">Delete</button></a>
+        <%}%>
+
+        <% if(loggedUser) {%>
+            <% if(article.likes.includes(loggedUser.id)) {%>
+                <a href="/articles/like/<%= article.id%>"><button class="btn-secondary">Dislike</button></a>
+            <%} else {%>
+                <a href="/articles/like/<%= article.id%>"><button class="btn-secondary">Like</button></a>
+            <%}%>
+        <%}%>
+        
+
+        <form action="/comments/add/" method="POST"  class='form-control login-form'>
+            <div class='input-row'>
+                <label for="comment" class='form-label'>Comment :
+                    <textarea name="description" id="description" cols="70" rows="5" required></textarea>
+                    <input type="hidden" name="articleId" value="<%= article.id%>">
+                    <input type="hidden" name="userId" value="<%= loggedUser ? loggedUser.id : ""%>">
+                    <input type="hidden" name="author" value="<%= loggedUser ? loggedUser.name : ""%>">
+                </label>
+            </div>
+            <button class="btn-secondary" type="submit">Comment</button>
+        </form>
+
+        <% comments.reverse().forEach( comment => { %>
+
+        <div class='comment-container'>
+            <p class='hero__text'><%= comment.description %></p>
+            <span class=''>commented by: </span>
+            <span class='hero__text comment__text'><%= comment.author %></span>
+            <p class='hero__text comment__text'> Likes: <%= comment.likes.length %></p>
+            <hr>
+        </div>
+        <div class="button-container">
+            <% if(loggedUser && (article.userId.toString() === loggedUser.id.toString() || comment.userId.toString() === loggedUser.id.toString())) {%>
+                <a href="/comments/delete/<%= article.id%>/<%= comment.id%>"><button class="btn-secondary">Delete</button></a>
+            <%}%>
+            <% if(loggedUser) {%>
+                <% if(comment.likes.includes(loggedUser.id)) {%>
+                    <a href="/comments/like/<%= comment.id%>"><button class="btn-secondary">Dislike</button></a>
+                <%} else {%>
+                    <a href="/comments/like/<%= comment.id%>"><button class="btn-secondary">Like</button></a>
+                <%}%>
+            <%}%>
+        </div>
+        <% }) %>
+
+    </div>
+<% include partials/footer %>

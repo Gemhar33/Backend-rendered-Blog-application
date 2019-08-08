@@ -1,0 +1,29 @@
+
+<div class='container'>
+    <a href= <%= art  ? "/articles/view/" + art.id  : "/" %> ><button class="btn-secondary">Back</button></a>
+    <form action=<%= art  ? "/articles/edit/" + art.id  : "/articles/new" %> method="POST" class='form-control login-form'>
+        <div class='input-row'>
+            <label for="title" class='form-label'>TITLE :</label>
+            <input class='input-item'type="text" name="title" id="title" value = "<%= art ? art.title : "" %>"  required>
+        </div>
+
+        <div class='input-row'>
+            <label for="description" class='form-label'>DESCRIPTION :
+                    <textarea name="description" id="description" cols="70" rows="20"  required ><%= art ? art.description.trim(): "" %></textarea>
+            </label>
+        </div>
+ 
+         <div class='input-row'>
+            <label for="tags" class='form-label'>tags :</label>
+            <input class='input-item'type="text" name="tags" id="tags" value =  "<%= art ? art.tags.join(',') : "" %>" >
+            
+        </div>
+        <small>(each tag to be sepaerated by a comma ',')</small>
+        <input class='input-item'type="hidden" name="author" id="author" value =  "<%= loggedUser ? loggedUser.name : "" %>" >
+
+        <div class='input-row'>
+            <button class="btn-secondary" type="submit"><%= art  ? "Change" : "Create" %></button>
+        </div>
+        
+    </form>
+</div>

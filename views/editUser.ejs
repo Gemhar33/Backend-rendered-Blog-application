@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+    
+    <div class='container min_height'>
+
+        <div class = "login_box">
+            <h2 class='hero__text'>Update User Details</h2>
+            <a href="/"><button class="btn-secondary">Back</button></a>
+
+            <form action="/users/update" method="POST" class='form-control login-form'>
+
+                <div class='input-row' class='form-label'>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required class='input-item' value= "<%= loggedUser ? loggedUser.name : "" %>">
+                </div>
+                <div class='input-row' class='form-label'>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required class='input-item' value= "<%= loggedUser ? loggedUser.email : "" %>">
+                </div>
+                <div class='input-row'>
+                    <label for="newPassword" class='form-label'>New Password:</label>
+                    <input type="text" name="newPassword" required class='input-item'>
+                    <%= console.log(loggedUser.password)%>
+                </div>
+                <button class="btn-secondary" type="submit">Update Details</button>
+            </form>
+        </div>
+        
+    </div>
+
+<% include partials/footer %>

@@ -1,0 +1,44 @@
+<% include partials/header %>
+
+    <div class='container'>
+      <% if(!loggedUser) {%>
+
+        <div class='login-container'>
+          <a href="/users/register"><button class="btn-secondary">Sign-up</button></a>
+          <a href="/users/login"><button class="btn-secondary" class="btn-secondary">Login</button></a>
+
+          <a href="/auth/github"><button class="btn-secondary">Login using Github</button></a>
+          <a href="/auth/google"><button class="btn-secondary">Login using Google</button></a>
+        </div>
+        
+        <h1 class="hero__title"><%= title %></h1>
+        <p class="hero__text">Welcome to <%= title %><span>, please Sign-up or Login</span> </p>
+    <%} else {%>
+        <div class='login-container'>
+          <a href="/users/logout"><button class="btn-secondary">Logout</button></a>
+          <a href="/articles/new"><button class="btn-secondary">New Article</button></a>
+          <a href="/users/update"><button class="btn-secondary">Update Account</button></a>
+        </div>
+      
+      <h1 class="hero__title"><%= title %></h1>
+      <p class="hero__text">Welcome to <%= title %><em>, <%= loggedUser.name%></em> </p>
+    <%}%>
+
+    <span class = "hero__text">TAGS : </span>
+    <% articles.reverse().forEach(article => { %>
+      <% article.tags.forEach(tag => { %> 
+        <span class = "hero__text"> <%= tag %> -</span>
+      <%});%>
+    <%});%>
+
+    <% articles.reverse().forEach(article => { %>
+      <div class="teaser">
+        <a href="/articles/view/<%= article.id%>"><h3 class = "teaser__title"><%= article.title%></h3></a>
+        <a href="/articles/view/<%= article.id%>"><p class = "teaser__text"><%= article.description.slice(0,100)+'...'%></p></a>
+
+        <p class="teaser__text hero__author">publised by - <%= article.author%></p>
+      </div>
+    <%});%>
+    </div>
+  
+<% include partials/footer %>

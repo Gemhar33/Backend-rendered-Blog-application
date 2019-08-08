@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+    
+    <div class='container min_height' >
+        <div class = "login_box">
+            <h2 class='hero__text'>Registeration Form</h2>
+            <a href="/"><button class="btn-secondary">Back</button></a>
+
+            <form action="/users/register" method="POST" class='form-control login-form'>
+
+                <div class='input-row' class='form-label'>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required class='input-item'>
+                </div>
+                <div class='input-row' class='form-label'>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required class='input-item'>
+                </div>
+                <div class='input-row'>
+                    <label for="text" class='form-label'>Password:</label>
+                    <input type="password" name="password" required class='input-item'>
+                </div>
+                <button class="btn-secondary" type="submit">Sign-Up</button>
+            </form>
+        </div>
+        
+    </div>
+
+<% include partials/footer %>

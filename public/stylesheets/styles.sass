@@ -1,0 +1,119 @@
+
+@import "reset"
+@import "vars"
+@import "base"
+@import "grids"
+@import "general"
+
+// ================
+// Header
+// ================
+
+.header
+    background: #FFFFFF
+.header__container
+    display: flex
+    align-items: center
+    justify-content: space-between
+.nav__primary
+    display: flex
+    margin-left: 3rem
+
+.header__link,
+.nav__items
+    text-decoration: none
+    color: $primary
+    margin-left: 1.5rem
+    &:hover
+        color: $primaryLight1
+    
+.nav__items
+    font-size: 1.75rem
+    margin-left: 5rem
+.logo
+    font-size: 3rem
+    font-weight: 900
+
+.login-container
+    display: flex
+    justify-content: flex-start
+    margin: 2rem 0
+.btn-secondary
+    margin-right: 1rem
+
+// ================
+// Hero
+// ================
+
+.hero__title
+    font-size: 4rem
+    font-weight: 500
+    margin: 2.5rem 0
+
+
+.teaser__title,
+.hero__subtitle
+    font-size: 2.75rem
+    font-weight: 500
+    letter-spacing: .02rem
+    line-height: 1.25
+.hero__small
+    font-size: .75rem
+
+// ================
+// Teaser
+// ================
+.teaser__title
+    &:hover
+        color: $primaryLight1
+.teaser
+    margin: 3.5rem 0
+.teaser__date 
+    font-style: italic
+
+.teaser__img-container
+    max-width: 300px
+
+.teaser__date ,
+.teaser__text,
+.hero__text
+    font-size: 1.65rem
+    line-height: 1.75
+    font-weight: 300
+    
+    .publishedBy
+        font-style: italic
+
+.input-row
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin: 1rem 0
+.login-form
+    max-width: 50%
+
+
+.article-container
+    padding-top: 2rem
+
+.input-item
+    flex-grow: 2
+    max-width: 80%
+
+.comment-container
+    padding: 1rem
+    background: #FFFFFF
+    margin: 1rem 0
+
+.teaser__text,
+.comment__text
+    font-size: 1rem
+
+.art__text
+    margin: 1.5rem 0
+
+.min_height 
+    min-height: calc(100vh - 16.25rem)
+.login_box
+    padding: 2rem 0
+
